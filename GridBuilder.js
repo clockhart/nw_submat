@@ -62,7 +62,6 @@ const BLOSUM62 = {
   'V': { 'A': 0,  'R': -3, 'N': -3, 'D': -3, 'C': -1, 'Q': -2, 'E': -2, 'G': -3, 'H': -3, 'I': 3,  'L': 1,  'K': -2, 'M': 1,  'F': -1, 'P': -2, 'S': -2, 'T': 0,  'W': -3, 'Y': -1, 'V': 4 }
 };
 
-// Example of scoring two residues using BLOSUM62
 function scoreResidues(subMat, res1, res2) {
     if (subMat == "PAM250") {
         return PAM250[res1][res2];
@@ -621,7 +620,7 @@ var GridBuilder = (function () {
                         'upScoreText': mPathTable[i][j - 1] + " + " + gapScore + " (The Gap score) = " + moveUpScore,
                         'diagonalScoreText': mPathTable[i - 1][j - 1]  + " + " +  
                             parseInt(comparisonScore, 10) +
-                            " between " + mTopSequence[i - 1] + " & " + mSideSequence[j - 1] + ") " +
+                            " (between " + mTopSequence[i - 1] + " & " + mSideSequence[j - 1] + ") " +
                             " = " +
                             moveDgScore,
                         'sideScore': moveSdScore,
