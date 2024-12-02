@@ -9,6 +9,13 @@
 </head>
 
 <script>
+function transpose(){
+    var tmp = $('#seq_1').val();
+    $('#seq_1').val($('#seq_2').val());
+    $('#seq_2').val(tmp);
+    restart();
+}
+
 function restart(){
     clear();
    GridBuilder.highlightOptimal();
@@ -47,6 +54,10 @@ $(document).ready(function(){
         restart();
     });
     
+    $('.btn-transpose').click(function(){
+        transpose();
+    });
+
     $('.btn-clear').click(function(){
         clear();
     });
@@ -73,6 +84,7 @@ This was adapted from <a href="https://github.com/drdrsh/Needleman-Wunsch">https
 <li><a href="https://lockhartlab.org/sw">Smith-Waterman for simple scoring functions</a></li>
 <li><a href="https://lockhartlab.org/sw_submat">Smith-Waterman with substitution matrices</a></li>
 </ul>
+A similar tool: <a href="https://gtuckerkellogg.github.io/pairwise/demo/">https://gtuckerkellogg.github.io/pairwise/demo/</a>
 <b>Algorithm:</b>
 <ol>
 <li>Create a table, and write one sequence along the column and another along the rows with one extra row or column at the beginning</li>
@@ -97,11 +109,18 @@ This was adapted from <a href="https://github.com/drdrsh/Needleman-Wunsch">https
     <th><label>Gap Score</label></th>
 </tr>
 <tr>
-    <td><select class="params" id="subMat", name="subMat" style="width: 100px;"><option value="BLOSUM62">BLOSUM62</option><option value="PAM250">PAM250</option></select></td>
+    <td>
+        <select class="params" id="subMat", name="subMat" style="width: 100px;">
+            <option value="BLOSUM62">BLOSUM62</option>
+            <option value="PAM250">PAM250</option>
+            <option value="Test">Test</option>
+        </select>
+    </td>
     <td><input class="params" id="gapScore" type="number" value="-10" /></td>
 </tr>
 <tr>
 <td colspan="4">
+        <button class="btn-transpose">Transpose Sequences</button>
         <button class="btn-compute">Compute Optimal Alignment</button>
         <button class="btn-clear">Clear Path</button>
         <button class="btn-custom">Custom Path</button>
